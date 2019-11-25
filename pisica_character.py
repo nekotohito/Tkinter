@@ -43,13 +43,21 @@ name_entry.grid(row=0, column=1)
 # ラジオボタンの情報を取得するクリックイベント
 # 見本　https://pg-chain.com/python-radiobutton-event
 def tribe_click():
-    animal = iv1.get()
-    tmb.askokcancel('メッセージ', rdo_txt[animal] + 'で良いですか？')
+    tribe_kind = iv1.get()
+    res = tmb.askokcancel('メッセージ', rdo_txt[tribe_kind] + 'で良いですか？')
+    if res == True:
+        mytribe = rdo_txt[tribe_kind]
+        tribe_ok["text"] = mytribe
+    elif res == False:
+        pass
 
 tribe_label =tk.Label(frame, text='動物', bg='LightskyBlue', width=10)
 tribe_label.grid(row=1, column=0, sticky="e")
 frame_for_tribe = tk.Frame(frame)
 frame_for_tribe.grid(row=1, column=1, padx=5, pady=5)
+tribe_ok = tk.Label(frame, text='決定名をここに出したい', bg="white", width=20)
+tribe_ok.grid(row=1, column=4)
+
 
 rdo_txt = ['ねこ', 'いぬ', 'うさぎ', 'あざらし', 'サンタ']
 iv1 = tk.IntVar()
@@ -67,6 +75,13 @@ tribe_button = tk.Button(frame, text='これにする',
 tribe_button.grid(row=1, column=2, columnspan=2)
 
 ### 性格
+def character_click():
+    character_kind = character_listbox.curselection()
+#    character_ok.set(character_listbox.get(character_kind))
+    mycharacter = characteristics[character_kind]
+    character_ok["text"] = mycharacter
+####ここからやるよ！　11/25作業
+
 character_label = tk.Label(frame, text="性格", bg='LightskyBlue', width=10)
 character_label.grid(row=2, column=0, sticky="e")
 frame_for_character = tk.Frame(frame)
@@ -83,6 +98,11 @@ character_listbox.pack(side=tk.LEFT)
 scroll_bar = tk.Scrollbar(frame_for_character, command=character_listbox.yview)
 scroll_bar.pack(side=tk.RIGHT, fill=tk.Y)
 character_listbox.config(yscrollcommand=scroll_bar.set)
+
+character_button = tk.Button(frame, text="これにする", command=character_click)
+character_button.grid(row=2, column=3)
+character_ok = tk.Label(frame, text='決定名をここに出したい', bg="white", width=20)
+character_ok.grid(row=2, column=4)
 
 ### その他
 etcetera_label = tk.Label(frame, text="その他", bg='LightskyBlue', width=10)
