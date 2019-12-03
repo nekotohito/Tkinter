@@ -14,10 +14,11 @@ def add_button():
     test_text.insert(tk.END, add_msg)
 
 # ファイルに書き込むための関数。
+# 文字化けしないように文字コードを指定したよ。
 def file_write():
     file_msg = test_text.get('1.0', tk.END)
     filename = 'neko.txt'
-    with open(filename, 'a') as file_object:
+    with open(filename, 'a', encoding = 'utf-8') as file_object:
         file_object.write(file_msg)
 
 test_label = tk.Label(root, text="test画面", bg='LightskyBlue', width=10)
