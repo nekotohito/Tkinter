@@ -82,8 +82,8 @@ tribe_button.grid(row=1, column=2, columnspan=2)
 def character_click():
 # curselection = 選択された行のインデックスをタプルで返す。
 # NOTE:
-#   .get はタプルを渡すと最初の要素インデックスに対応する文字列を出してくれます。
-#   .curselection()[0] する必要はありません。
+#   .get はタプルを渡すと[0]の要素を自動で選択してくれます。
+#   なので自分で .curselection()[0] と指定する必要はありません。
     mycharacter = character_listbox.get(character_listbox.curselection())
     character_ok["text"] = mycharacter
 # 何も選択せずに「これにする」ボタンを押すとerrorおきる。
