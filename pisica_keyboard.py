@@ -31,14 +31,20 @@ class PisicaKeyboard(tk.Frame):
         self.entry.grid(row=0, column=0, columnspan=4, pady=3)
         self.entry.focus_set()
 
+    def ok_click(self):
+        pass
+    #    res = tmb.askokcancel('メッセージ', 'これで良いですか？')
+    #     if res == True:
+    #         pass
+    #     elif res == False:
+    #         pass
+
         # hiraganas = 'あいうえお'
         # numbers = [2,3,4,5,6]
         # buttons = []
         # for i in range(5):
         #     buttons.append(tk.Button(self.master, text=hiraganas[i], width=4, 
         #                    command=lambda hiragana=hiraganas[i]: self.input(hiragana)).grid(row=numbers[i], column=0))
-
-
 
         tk.Button(self.master, text='あ', width=4,
                   command=lambda: self.input('あ')).grid(row=2, column=0)
@@ -143,8 +149,10 @@ class PisicaKeyboard(tk.Frame):
                   command=lambda: self.input('ん')).grid(row=6, column=9)
 
         tk.Button(self.master, text='決定', width=9,
-                  command=lambda:tmb.showinfo('メッセージ',
-                  'これで良いですか？')).grid(row=2, column=11, columnspan=2)
+                  command=lambda: self.ok_click()).grid(row=2, column=11, columnspan=2)
+        # tk.Button(self.master, text='決定', width=9,
+        #           command=lambda:tmb.showinfo('メッセージ',
+        #           'これで良いですか？')).grid(row=2, column=11, columnspan=2)
         tk.Button(self.master, text='AC', width=4,
                   command=lambda: self.clear_all()).grid(row=4, column=11)
         tk.Button(self.master, text='C', width=4,
