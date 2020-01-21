@@ -8,6 +8,7 @@ import tkinter.messagebox as tmb
 # 課題1：packとgridをうまく組み合わせて配置・デザインしたい。
 # ベストは何？
 
+
 root = tk.Tk()
 root.title('キャラクター設定')
 root.geometry("600x600")
@@ -28,19 +29,22 @@ menu_file.add_separator()
 menu_file.add_command(label='閉じる', command=quit)
 
 ### 名前
-def name_command():
-    myname = name_entry.get()
-    name_ok["text"] = myname
+# def name_command():
+#     myname = name_entry.get()
+#     name_ok["text"] = myname
+
+def keyboard():
+    import pisica_keyboard
 
 name_label = tk.Label(main_frame, text='名前', bg='LightSkyBlue',width=10)
 name_label.grid(row=0, column=0)
-name_button = tk.Button(main_frame, text='入力', command=name_command)
-name_button.grid(row=0, column=2, columnspan=2)
+name_button = tk.Button(main_frame, text='入力', command=keyboard)
+name_button.grid(row=0, column=1, columnspan=2,  sticky=tk.W+tk.E)
 name_ok = tk.Label(main_frame, text='決定名をここに出したい', bg="white", width=20)
 name_ok.grid(row=0, column=4)
 # とりあえずentryでやっておく。
-name_entry = tk.Entry(main_frame, width=20)
-name_entry.grid(row=0, column=1)
+# name_entry = tk.Entry(main_frame, width=20)
+# name_entry.grid(row=0, column=1)
 
 ### 動物
 # ラジオボタンの情報を取得するクリックイベント
@@ -84,7 +88,14 @@ def character_click():
 # NOTE:
 #   .get はタプルを渡すと[0]の要素を自動で選択してくれます。
 #   なので自分で .curselection()[0] と指定する必要はありません。
-    mycharacter = character_listbox.get(character_listbox.curselection())
+
+    # ListBox.curselection でいま選択されてる行のインデックスがわかる。
+    selected_item_index = character_listbox.curselection()
+
+    # ListBox.get にインデックス番号をわたすと、
+    # それに対応した要素(表示されてる文字)を返してくれるみたい。
+    mycharacter = character_listbox.get(selected_item_index)
+
     character_ok["text"] = mycharacter
 # 何も選択せずに「これにする」ボタンを押すとerrorおきる。
 # 「選択されていません」messageをだす必要がある。

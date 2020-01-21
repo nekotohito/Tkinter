@@ -22,6 +22,13 @@ class PisicaKeyboard(tk.Frame):
         self.entry.delete(0, tk.END)
         self.entry.insert(0, txt[:-1])
 
+    def ok_click(self):
+        res = tmb.askokcancel('メッセージ', 'これで良いですか？')
+        if res == True:
+            pass
+        elif res == False:
+            pass
+
     def create_widgets(self):
         file_menu = tk.Menu(self.menu_bar)
         file_menu.add_command(label='test' )
@@ -31,13 +38,6 @@ class PisicaKeyboard(tk.Frame):
         self.entry.grid(row=0, column=0, columnspan=4, pady=3)
         self.entry.focus_set()
 
-    def ok_click(self):
-        pass
-    #    res = tmb.askokcancel('メッセージ', 'これで良いですか？')
-    #     if res == True:
-    #         pass
-    #     elif res == False:
-    #         pass
 
         # hiraganas = 'あいうえお'
         # numbers = [2,3,4,5,6]
